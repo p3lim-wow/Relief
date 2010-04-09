@@ -54,6 +54,8 @@ function parent:UPDATE_INVENTORY_ALERTS()
 end
 
 function parent:UPDATE_PENDING_MAIL()
+	if(not self.Mail) then return end
+
 	if(HasNewMail()) then
 		self.Mail:Show()
 	else
