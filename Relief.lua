@@ -16,7 +16,7 @@ local parent = CreateFrame('Button', nil, Minimap)
 parent:SetScript('OnEvent', function(self, event) self[event](Minimap) end)
 parent:RegisterEvent('UPDATE_INVENTORY_ALERTS')
 parent:RegisterEvent('UPDATE_PENDING_MAIL')
-parent:RegisterEvent('PLAYER_LOGIN')
+parent:RegisterEvent('VARIABLES_LOADED')
 
 for _, object in pairs({
 	BattlegroundShine,
@@ -54,8 +54,6 @@ function parent:UPDATE_INVENTORY_ALERTS()
 end
 
 function parent:UPDATE_PENDING_MAIL()
-	if(not self.Mail) then return end
-
 	if(HasNewMail()) then
 		self.Mail:Show()
 	else
@@ -63,7 +61,7 @@ function parent:UPDATE_PENDING_MAIL()
 	end
 end
 
-function parent:PLAYER_LOGIN()
+function parent:VARIABLES_LOADED()
 	self:ClearAllPoints()
 	self:SetParent(UIParent)
 	self:SetPoint('TOPRIGHT', -20, -20)
