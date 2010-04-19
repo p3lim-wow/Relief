@@ -43,9 +43,8 @@ end
 
 function parent:UPDATE_INVENTORY_ALERTS()
 	for slot in pairs(INVENTORY_ALERT_STATUS_SLOTS) do
-		local status = GetInventoryAlertStatus(slot)
-		if(status > 0) then
-			local color = INVENTORY_ALERT_COLORS[status]
+		local color = INVENTORY_ALERT_COLORS[GetInventoryAlertStatus(slot)]
+		if(color) then
 			return self.Time:SetTextColor(color.r, color.g, color.b)
 		end
 	end
@@ -71,12 +70,8 @@ function parent:VARIABLES_LOADED()
 	self:SetScale(0.9)
 
 	self:EnableMouseWheel()
-	self:SetScript('OnMouseWheel', function(frame, direction)
-		if(direction > 0) then
-			MinimapZoomIn:Click()
-		else
-			MinimapZoomOut:Click()
-		end
+	self:SetScript('OnMouseWheel', function(self, direction)
+		self:SetZoom(self:GetZoom() + (self:GetZoom() == 0 and direction < 0 and 0 or direction))
 	end)
 
 	MiniMapTracking:ClearAllPoints()
@@ -107,8 +102,10 @@ function parent:VARIABLES_LOADED()
 	parent:SetWidth(40)
 	parent:SetHeight(10)
 	parent:SetPoint('BOTTOM')
-	parent:SetScript('OnUpdate', function() self.Time:SetText(GameTime_GetTime()) end)
-	parent:SetScript('OnClick', ToggleCalendar)	
+	parent:SetScript('OnClick', ToggleCalendar)
+	parent:SetScript('OnUpdate', function()
+		self.Time:SetFormattedText(TIMEMANAGER_TICKER_24HOUR, GetGameTime())
+	end)
 
 	DurabilityFrame:UnregisterAllEvents()
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
