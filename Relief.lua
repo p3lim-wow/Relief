@@ -102,7 +102,15 @@ function parent:PLAYER_LOGIN()
 	parent:SetWidth(40)
 	parent:SetHeight(10)
 	parent:SetPoint('BOTTOM')
-	parent:SetScript('OnClick', ToggleCalendar)
+	parent:RegisterForClicks('AnyUp')
+	parent:SetScript('OnClick', function(self, button)
+		if(button == 'LeftButton') then
+			ToggleCalendar()
+		elseif(button == 'RightButton' and IsAddOnLoaded('Broker_Equipment')) then
+			LibStub('LibDataBroker-1.1'):GetDataObjectByName('Broker_Equipment').OnClick(self)
+		end
+	end)
+
 	parent:SetScript('OnUpdate', function()
 		self.Time:SetFormattedText(TIMEMANAGER_TICKER_24HOUR, GetGameTime())
 	end)
