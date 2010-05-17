@@ -58,9 +58,14 @@ end
 
 function parent:UPDATE_PENDING_MAIL()
 	if(HasNewMail()) then
-		self.Mail:Show()
+		for index = 1, GetNumTrackingTypes() do
+			local name, _, active = GetTrackingInfo(index)
+			if(name == MINIMAP_TRACKING_MAILBOX and not active) then
+				return SetTracking(index)
+			end
+		end
 	else
-		self.Mail:Hide()
+		SetTracking(nil)
 	end
 end
 
@@ -96,12 +101,6 @@ function parent:PLAYER_LOGIN()
 	self.Time = parent:CreateFontString(nil, 'ARTWORK')
 	self.Time:SetAllPoints(parent)
 	self.Time:SetFont(FONT, 9, 'OUTLINE')
-
-	self.Mail = self:CreateFontString(nil, 'ARTWORK')
-	self.Mail:SetPoint('TOP')
-	self.Mail:SetFont(FONT, 9, 'OUTLINE')
-	self.Mail:SetText('New Mail!')
-	self.Mail:Hide()
 
 	parent:SetWidth(40)
 	parent:SetHeight(10)
