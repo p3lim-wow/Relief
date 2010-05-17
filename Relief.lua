@@ -73,7 +73,7 @@ function parent:PLAYER_LOGIN()
 	self:ClearAllPoints()
 	self:SetParent(UIParent)
 	self:SetPoint('TOPRIGHT', -20, -20)
-	self:SetBackdrop({bgFile = TEXTURE, insets = {top = -2, bottom = -1, left = -2, right = -1}}) -- Stupid UIScale
+	self:SetBackdrop({bgFile = TEXTURE, insets = {top = -1, bottom = -1, left = -1, right = -1}})
 	self:SetBackdropColor(0, 0, 0)
 	self:SetMaskTexture(TEXTURE)
 	self:SetScale(0.9)
