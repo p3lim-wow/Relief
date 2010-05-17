@@ -42,14 +42,18 @@ for _, object in pairs({
 end
 
 function parent:UPDATE_INVENTORY_ALERTS()
+	local status = 0
 	for slot in pairs(INVENTORY_ALERT_STATUS_SLOTS) do
-		local color = INVENTORY_ALERT_COLORS[GetInventoryAlertStatus(slot)]
-		if(color) then
-			return self.Time:SetTextColor(color.r, color.g, color.b)
-		end
+		local current = GetInventoryAlertStatus(slot)
+		status = current > status and current or status
 	end
 
-	self.Time:SetTextColor(1, 1, 1)
+	local color = INVENTORY_ALERT_COLORS[status]
+	if(color) then
+		self.Time:SetTextColor(color.r, color.g, color.b)
+	else
+		self.Time:SetTextColor(1, 1, 1)
+	end
 end
 
 function parent:UPDATE_PENDING_MAIL()
