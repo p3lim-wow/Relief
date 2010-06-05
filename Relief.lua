@@ -76,7 +76,7 @@ function parent:PLAYER_LOGIN()
 	self:SetBackdrop({bgFile = TEXTURE, insets = {top = -1, bottom = -1, left = -1, right = -1}})
 	self:SetBackdropColor(0, 0, 0)
 	self:SetMaskTexture(TEXTURE)
-	self:SetScale(0.9)
+	self:SetSize(120, 120)
 
 	self:EnableMouseWheel()
 	self:SetScript('OnMouseWheel', function(self, direction)
