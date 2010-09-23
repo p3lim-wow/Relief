@@ -57,15 +57,17 @@ function parent:UPDATE_INVENTORY_ALERTS()
 end
 
 function parent:UPDATE_PENDING_MAIL()
-	if(HasNewMail()) then
-		for index = 1, GetNumTrackingTypes() do
-			local name, _, active = GetTrackingInfo(index)
-			if(name == MINIMAP_TRACKING_MAILBOX and not active) then
-				return SetTracking(index)
+	for index = 1, GetNumTrackingTypes() do
+		local name, texture, active = GetTrackingInfo(index)
+		if(name == MINIMAP_TRACKING_MAILBOX) then
+			if(HasNewMail() and not active) then
+				MiniMapTrackingIcon:SetTexture(texture)
+				return SetTracking(index, true)
+			else
+				MiniMapTrackingIcon:SetTexture([=[Interface\Minimap\Tracking\None]=])
+				return SetTracking(index, false)
 			end
 		end
-	else
-		SetTracking(nil)
 	end
 end
 
