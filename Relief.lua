@@ -63,7 +63,7 @@ function parent:UPDATE_PENDING_MAIL()
 			if(HasNewMail() and not active) then
 				MiniMapTrackingIcon:SetTexture(texture)
 				return SetTracking(index, true)
-			else
+			elseif(not HasNewMail() and active) then
 				MiniMapTrackingIcon:SetTexture([=[Interface\Minimap\Tracking\None]=])
 				return SetTracking(index, false)
 			end
