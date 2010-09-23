@@ -115,9 +115,4 @@ function parent:PLAYER_LOGIN()
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
 	MiniMapMailFrame:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
-
-	if(IsAddOnLoaded('Broker_Equipment')) then
-		parent:RegisterForClicks('LeftButtonUp')
-		parent:SetScript('OnClick', LibStub('LibDataBroker-1.1'):GetDataObjectByName('Broker_Equipment').OnClick)
-	end
 end

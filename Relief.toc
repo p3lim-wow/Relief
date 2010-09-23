@@ -3,6 +3,5 @@
 ## Version: Alpha
 ## Title: Relief
 ## Notes: Minimap simplicity
-## OptionalDeps: Broker_Equipment
 
 Relief.lua
