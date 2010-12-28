@@ -9,13 +9,10 @@
 
 --]]
 
-local FONT = [=[Interface\AddOns\Relief\semplice.ttf]=]
 local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
 
-local parent = CreateFrame('Button', nil, Minimap)
+local parent = CreateFrame('Frame')
 parent:SetScript('OnEvent', function(self, event) self[event](Minimap) end)
-parent:RegisterEvent('UPDATE_INVENTORY_ALERTS')
-parent:RegisterEvent('UPDATE_PENDING_MAIL')
 parent:RegisterEvent('PLAYER_LOGIN')
 
 for _, object in pairs({
@@ -36,36 +33,6 @@ for _, object in pairs({
 		object:SetTexture(nil)
 	else
 		object:Hide()
-	end
-end
-
-function parent:UPDATE_INVENTORY_ALERTS()
-	local status = 0
-	for slot in pairs(INVENTORY_ALERT_STATUS_SLOTS) do
-		local current = GetInventoryAlertStatus(slot)
-		status = current > status and current or status
-	end
-
-	local color = INVENTORY_ALERT_COLORS[status]
-	if(color) then
-		self.Time:SetTextColor(color.r, color.g, color.b)
-	else
-		self.Time:SetTextColor(1, 1, 1)
-	end
-end
-
-function parent:UPDATE_PENDING_MAIL()
-	for index = 1, GetNumTrackingTypes() do
-		local name, texture, active = GetTrackingInfo(index)
-		if(name == MINIMAP_TRACKING_MAILBOX) then
-			if(HasNewMail() and not active) then
-				MiniMapTrackingIcon:SetTexture(texture)
-				return SetTracking(index, true)
-			elseif(not HasNewMail() and active) then
-				MiniMapTrackingIcon:SetTexture([=[Interface\Minimap\Tracking\None]=])
-				return SetTracking(index, false)
-			end
-		end
 	end
 end
 
@@ -100,18 +67,6 @@ function parent:PLAYER_LOGIN()
 	MiniMapBattlefieldFrame:SetParent(self)
 	MiniMapBattlefieldFrame:SetPoint('TOPRIGHT')
 
-	self.Time = parent:CreateFontString(nil, 'ARTWORK')
-	self.Time:SetAllPoints(parent)
-	self.Time:SetFont(FONT, 9, 'OUTLINE')
-
-	parent:SetWidth(40)
-	parent:SetHeight(10)
-	parent:SetPoint('BOTTOM')
-	parent:SetScript('OnUpdate', function()
-		self.Time:SetFormattedText(TIMEMANAGER_TICKER_24HOUR, GetGameTime())
-	end)
-
-	DurabilityFrame:UnregisterAllEvents()
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
 	MiniMapMailFrame:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
