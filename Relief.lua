@@ -22,11 +22,6 @@ parent:SetScript('OnEvent', function()
 	Minimap:SetMaskTexture(TEXTURE)
 	Minimap:SetScale(0.9)
 
-	Minimap:EnableMouseWheel()
-	Minimap:SetScript('OnMouseWheel', function(self, direction)
-		self:SetZoom(self:GetZoom() + (self:GetZoom() == 0 and direction < 0 and 0 or direction))
-	end)
-
 	Minimap:SetScript('OnMouseUp', function(self, button)
 		if(button == 'RightButton') then
 			ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, 'cursor')
