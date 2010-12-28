@@ -44,8 +44,12 @@ parent:SetScript('OnEvent', function()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
 	MiniMapBattlefieldFrame:SetPoint('TOPRIGHT')
 
+	MiniMapMailFrame:ClearAllPoints()
+	MiniMapMailFrame:SetParent(Minimap)
+	MiniMapMailFrame:SetPoint('TOPLEFT')
+	MiniMapMailIcon:SetTexture([=[Interface\Minimap\Tracking\Mailbox]=])
+
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
-	MiniMapMailFrame:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
 
 	for _, object in pairs({
@@ -59,6 +63,7 @@ parent:SetScript('OnEvent', function()
 		MinimapZoneTextButton,
 		MiniMapBattlefieldBorder,
 		MiniMapLFGFrameBorder,
+		MiniMapMailBorder,
 		MiniMapTracking,
 		MiniMapWorldMapButton,
 	}) do
