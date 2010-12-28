@@ -9,17 +9,15 @@
 
 --]]
 
-local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
-
-local parent = CreateFrame('Frame')
-parent:RegisterEvent('PLAYER_LOGIN')
-parent:SetScript('OnEvent', function()
+local Relief = CreateFrame('Frame')
+Relief:RegisterEvent('PLAYER_LOGIN')
+Relief:SetScript('OnEvent', function()
 	Minimap:ClearAllPoints()
 	Minimap:SetParent(UIParent)
 	Minimap:SetPoint('TOPRIGHT', -20, -20)
-	Minimap:SetBackdrop({bgFile = TEXTURE, insets = {top = -1, bottom = -1, left = -1, right = -1}})
+	Minimap:SetBackdrop({bgFile = [=[Interface\ChatFrame\ChatFrameBackground]=], insets = {top = -1, bottom = -1, left = -1, right = -1}})
 	Minimap:SetBackdropColor(0, 0, 0)
-	Minimap:SetMaskTexture(TEXTURE)
+	Minimap:SetMaskTexture([=[Interface\ChatFrame\ChatFrameBackground]=])
 	Minimap:SetScale(0.9)
 
 	Minimap:SetScript('OnMouseUp', function(self, button)
