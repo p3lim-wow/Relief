@@ -23,6 +23,8 @@ Relief:SetScript('OnEvent', function()
 	Minimap:SetScript('OnMouseUp', function(self, button)
 		if(button == 'RightButton') then
 			ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, 'cursor')
+		elseif(button == 'MiddleButton') then
+			ToggleCalendar()
 		else
 			Minimap_OnClick(self)
 		end
