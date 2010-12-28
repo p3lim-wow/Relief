@@ -68,4 +68,4 @@ Relief:SetScript('OnEvent', function()
 			object:Hide()
 		end
 	end
-end
+end)
