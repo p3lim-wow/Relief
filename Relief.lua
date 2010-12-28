@@ -29,9 +29,7 @@ for _, object in pairs({
 	MinimapZoneTextButton,
 	MiniMapBattlefieldBorder,
 	MiniMapLFGFrameBorder,
-	MiniMapTrackingBackground,
-	MiniMapTrackingButtonBorder,
-	MiniMapTrackingIconOverlay,
+	MiniMapTracking,
 	MiniMapWorldMapButton,
 }) do
 	if(object:GetObjectType() == 'Texture') then
@@ -85,11 +83,13 @@ function parent:PLAYER_LOGIN()
 		self:SetZoom(self:GetZoom() + (self:GetZoom() == 0 and direction < 0 and 0 or direction))
 	end)
 
-	MiniMapTracking:ClearAllPoints()
-	MiniMapTracking:SetParent(self)
-	MiniMapTracking:SetPoint('TOPLEFT')
-	MiniMapTrackingIcon:SetTexCoord(0.065, 0.935, 0.065, 0.935)
-	MiniMapTrackingButton:SetHighlightTexture(nil)
+	Minimap:SetScript('OnMouseUp', function(self, button)
+		if(button == 'RightButton') then
+			ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, 'cursor')
+		else
+			Minimap_OnClick(self)
+		end
+	end)
 
 	MiniMapLFGFrame:ClearAllPoints()
 	MiniMapLFGFrame:SetParent(self)
