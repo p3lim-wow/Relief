@@ -69,3 +69,5 @@ Relief:SetScript('OnEvent', function()
 		end
 	end
 end)
+
+function TimeManager_LoadUI() end
