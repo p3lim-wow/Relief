@@ -36,7 +36,7 @@ Relief:SetScript('OnEvent', function()
 	MiniMapLFGFrame:SetHighlightTexture(nil)
 	MiniMapLFGFrame:SetScript('OnClick', function(self, button)
 		local mode = GetLFGMode()
-		if(button == 'RightButton' and (mode == 'lfgparty' or more == 'abandonedInDungeon')) then
+		if(button == 'RightButton' and (mode == 'lfgparty' or mode == 'abandonedInDungeon')) then
 			LFGTeleport(IsInLFGDungeon())
 		else
 			MiniMapLFGFrame_OnClick(self, button)
