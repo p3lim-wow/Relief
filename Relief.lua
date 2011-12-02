@@ -69,13 +69,17 @@ Relief:SetScript('OnEvent', function()
 		MiniMapMailBorder,
 		MiniMapTracking,
 		MiniMapWorldMapButton,
+		MiniMapLFGFrameGroupSize,
 	}) do
 		if(object:GetObjectType() == 'Texture') then
 			object:SetTexture(nil)
 		else
+			object.Show = object.Hide
 			object:Hide()
 		end
 	end
 end)
 
 function TimeManager_LoadUI() end
+
+LFG_EYE_TEXTURES.raid = LFG_EYE_TEXTURES.default
