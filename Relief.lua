@@ -43,6 +43,8 @@ Relief:SetScript('OnEvent', function()
 		end
 	end)
 
+	LFG_EYE_TEXTURES.unknown = LFG_EYE_TEXTURES.default
+
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
 	MiniMapBattlefieldFrame:SetPoint('TOPRIGHT')
