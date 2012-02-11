@@ -18,6 +18,8 @@ Relief:SetScript('OnEvent', function()
 	Minimap:SetBackdrop({bgFile = [=[Interface\ChatFrame\ChatFrameBackground]=], insets = {top = -1, bottom = -1, left = -1, right = -1}})
 	Minimap:SetBackdropColor(0, 0, 0)
 	Minimap:SetMaskTexture([=[Interface\ChatFrame\ChatFrameBackground]=])
+	Minimap:SetArchBlobRingAlpha(0)
+	Minimap:SetQuestBlobRingAlpha(0)
 	Minimap:SetScale(0.9)
 
 	Minimap:SetScript('OnMouseUp', function(self, button)
