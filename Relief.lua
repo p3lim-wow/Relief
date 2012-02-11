@@ -10,8 +10,10 @@
 --]]
 
 local Relief = CreateFrame('Frame')
+Relief:SetScript('OnEvent', function(self, event) self[event](self) end)
 Relief:RegisterEvent('PLAYER_LOGIN')
-Relief:SetScript('OnEvent', function()
+
+function Relief:PLAYER_LOGIN()
 	Minimap:ClearAllPoints()
 	Minimap:SetParent(UIParent)
 	Minimap:SetPoint('TOPRIGHT', -20, -20)
@@ -31,6 +33,13 @@ Relief:SetScript('OnEvent', function()
 			Minimap_OnClick(self)
 		end
 	end)
+
+	MinimapDurability = Minimap:CreateTexture(nil, 'BORDER')
+	MinimapDurability:SetPoint('TOPRIGHT')
+	MinimapDurability:SetTexture([=[Interface\Cursor\Item]=])
+	MinimapDurability:SetTexCoord(1/2, 0, 0, 1/2)
+	MinimapDurability:SetSize(16, 16)
+	DurabilityFrame:SetAlpha(0)
 
 	MiniMapLFGFrame:ClearAllPoints()
 	MiniMapLFGFrame:SetParent(Minimap)
@@ -82,6 +91,26 @@ Relief:SetScript('OnEvent', function()
 			object:Hide()
 		end
 	end
-end)
+
+	self:RegisterEvent('UPDATE_INVENTORY_DURABILITY')
+end
+
+function Relief:UPDATE_INVENTORY_DURABILITY()
+	local alert = 0
+	for index in pairs(INVENTORY_ALERT_STATUS_SLOTS) do
+		local status = GetInventoryAlertStatus(index)
+		if(status > alert) then
+			alert = status
+		end
+	end
+
+	local color = INVENTORY_ALERT_COLORS[alert]
+	if(color) then
+		MinimapDurability:SetVertexColor(color.r, color.g, color.b)
+		MinimapDurability:Show()
+	else
+		MinimapDurability:Hide()
+	end
+end
 
 function TimeManager_LoadUI() end
