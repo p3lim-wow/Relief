@@ -81,5 +81,3 @@ Relief:SetScript('OnEvent', function()
 end)
 
 function TimeManager_LoadUI() end
-
-LFG_EYE_TEXTURES.raid = LFG_EYE_TEXTURES.default
