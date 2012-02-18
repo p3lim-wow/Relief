@@ -1,8 +1,36 @@
-local Capture = CreateFrame('Frame', nil, Minimap)
-Capture:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
-Capture:RegisterEvent('ADDON_LOADED')
 
-function Capture:ADDON_LOADED(name)
+local function Update(self)
+	for index = 1, NUM_EXTENDED_UI_FRAMES do
+		local frame = _G['WorldStateCaptureBar' .. index]
+		if(frame and frame:IsShown()) then
+			frame:Hide()
+			frame.Show = function() end
+		end
+	end
+
+	for index = 1, GetNumWorldStateUI() do
+		local _, shown, _, _, _, _, _, _, extended, pointer, spacing = GetWorldStateUIInfo(index)
+		if(extended == 'CAPTUREPOINT') then
+			if(shown == 1) then
+				local totalWidth = math.floor(self:GetWidth())
+
+				local width = (totalWidth - (totalWidth * (spacing / 100))) / 2
+				self.Left:SetWidth(width)
+				self.Right:SetWidth(width)
+
+				self.Spark:SetPoint('RIGHT', self.Neutral, - (pointer * ((totalWidth - 2) / 100)), 0)
+
+				self:Show()
+			else
+				self:Hide()
+			end
+		end
+	end
+end
+
+local Capture = CreateFrame('Frame', nil, Minimap)
+Capture:RegisterEvent('ADDON_LOADED')
+Capture:SetScript('OnEvent', function(self, event, name)
 	if(name ~= 'Relief') then return end
 
 	local Background = self:CreateTexture(nil, 'BORDER')
@@ -36,36 +64,11 @@ function Capture:ADDON_LOADED(name)
 	Spark:SetSize(3.5, 9)
 	self.Spark = Spark
 
+	self:Hide()
 	self:SetAllPoints()
 	self:RegisterEvent('UPDATE_WORLD_STATES')
-	self:UPDATE_WORLD_STATES()
-end
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:SetScript('OnEvent', Update)
 
-function Capture:UPDATE_WORLD_STATES()
-	for index = 1, NUM_EXTENDED_UI_FRAMES do
-		local frame = _G['WorldStateCaptureBar' .. index]
-		if(frame and frame:IsShown()) then
-			frame:Hide()
-			frame.Show = function() end
-		end
-	end
-
-	for index = 1, GetNumWorldStateUI() do
-		local _, shown, _, _, _, _, _, _, extended, pointer, spacing = GetWorldStateUIInfo(index)
-		if(extended == 'CAPTUREPOINT') then
-			if(shown == 1) then
-				local totalWidth = math.floor(self:GetWidth())
-
-				local width = (totalWidth - (totalWidth * (spacing / 100))) / 2
-				self.Left:SetWidth(width)
-				self.Right:SetWidth(width)
-
-				self.Spark:SetPoint('RIGHT', self.Neutral, - (pointer * ((totalWidth - 2) / 100)), 0)
-
-				self:Show()
-			else
-				self:Hide()
-			end
-		end
-	end
-end
+	Update(self)
+end)
