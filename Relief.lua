@@ -9,6 +9,8 @@
 
 --]]
 
+local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
+
 local Relief = CreateFrame('Frame')
 Relief:SetScript('OnEvent', function(self, event) self[event](self) end)
 Relief:RegisterEvent('PLAYER_LOGIN')
@@ -17,7 +19,7 @@ function Relief:PLAYER_LOGIN()
 	Minimap:ClearAllPoints()
 	Minimap:SetParent(UIParent)
 	Minimap:SetPoint('TOPRIGHT', -20, -20)
-	Minimap:SetBackdrop({bgFile = [=[Interface\ChatFrame\ChatFrameBackground]=], insets = {top = -1, bottom = -1, left = -1, right = -1}})
+	Minimap:SetBackdrop({bgFile = TEXTURE, insets = {top = -1, bottom = -1, left = -1, right = -1}})
 	Minimap:SetBackdropColor(0, 0, 0)
 	Minimap:SetMaskTexture([=[Interface\ChatFrame\ChatFrameBackground]=])
 	Minimap:SetArchBlobRingAlpha(0)
@@ -45,6 +47,11 @@ function Relief:PLAYER_LOGIN()
 	MiniMapLFGFrame:SetParent(Minimap)
 	MiniMapLFGFrame:SetPoint('TOPRIGHT')
 	MiniMapLFGFrame:SetHighlightTexture(nil)
+
+	LFGSearchStatus:SetToplevel(true)
+	LFGSearchStatus:SetBackdrop({bgFile = TEXTURE, edgeFile = TEXTURE, edgeSize = 1})
+	LFGSearchStatus:SetBackdropColor(0, 0, 0, 0.8)
+	LFGSearchStatus:SetBackdropBorderColor(0, 0, 0)
 
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
