@@ -45,14 +45,6 @@ function Relief:PLAYER_LOGIN()
 	MiniMapLFGFrame:SetParent(Minimap)
 	MiniMapLFGFrame:SetPoint('TOPRIGHT')
 	MiniMapLFGFrame:SetHighlightTexture(nil)
-	MiniMapLFGFrame:SetScript('OnClick', function(self, button)
-		local mode = GetLFGMode()
-		if(button == 'RightButton' and (mode == 'lfgparty' or mode == 'abandonedInDungeon')) then
-			LFGTeleport(IsInLFGDungeon())
-		else
-			MiniMapLFGFrame_OnClick(self, button)
-		end
-	end)
 
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
