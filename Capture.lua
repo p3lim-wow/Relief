@@ -33,29 +33,23 @@ Capture:RegisterEvent('ADDON_LOADED')
 Capture:SetScript('OnEvent', function(self, event, name)
 	if(name ~= 'Relief') then return end
 
-	local Background = self:CreateTexture(nil, 'BORDER')
-	Background:SetTexture(0, 0, 0)
-	Background:SetPoint('BOTTOMLEFT')
-	Background:SetPoint('BOTTOMRIGHT')
-	Background:SetHeight(4)
-
 	local Neutral = self:CreateTexture(nil, 'BORDER', nil, 1)
 	Neutral:SetTexture(0.6, 0.6, 0.6)
 	Neutral:SetPoint('BOTTOMLEFT')
 	Neutral:SetPoint('BOTTOMRIGHT')
-	Neutral:SetHeight(3)
+	Neutral:SetHeight(4)
 	self.Neutral = Neutral
 
 	local Left = self:CreateTexture(nil, 'BORDER', nil, 2)
 	Left:SetTexture(0, 0.38, 0.72)
 	Left:SetPoint('BOTTOMLEFT')
-	Left:SetHeight(3)
+	Left:SetHeight(4)
 	self.Left = Left
 
 	local Right = self:CreateTexture(nil, 'BORDER', nil, 2)
 	Right:SetTexture(0.65, 0.22, 0)
 	Right:SetPoint('BOTTOMRIGHT')
-	Right:SetHeight(3)
+	Right:SetHeight(4)
 	self.Right = Right
 
 	local Spark = self:CreateTexture(nil, 'BORDER', nil, 3)
@@ -65,7 +59,12 @@ Capture:SetScript('OnEvent', function(self, event, name)
 	self.Spark = Spark
 
 	self:Hide()
-	self:SetAllPoints()
+	self:SetHeight(5)
+	self:SetPoint('BOTTOMLEFT', 0, -9)
+	self:SetPoint('BOTTOMRIGHT', 0, -9)
+	self:SetBackdrop({bgFile = [=[Interface\ChatFrame\ChatFrameBackground]=], insets = {top = -1, bottom = -1, left = -1, right = -1}})
+	self:SetBackdropColor(0, 0, 0)
+
 	self:RegisterEvent('UPDATE_WORLD_STATES')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:SetScript('OnEvent', Update)
