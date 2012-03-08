@@ -36,13 +36,6 @@ function Relief:PLAYER_LOGIN()
 		end
 	end)
 
-	MinimapDurability = Minimap:CreateTexture(nil, 'BORDER')
-	MinimapDurability:SetPoint('TOPRIGHT')
-	MinimapDurability:SetTexture([=[Interface\Cursor\Item]=])
-	MinimapDurability:SetTexCoord(1/2, 0, 0, 1/2)
-	MinimapDurability:SetSize(16, 16)
-	DurabilityFrame:SetAlpha(0)
-
 	MiniMapLFGFrame:ClearAllPoints()
 	MiniMapLFGFrame:SetParent(Minimap)
 	MiniMapLFGFrame:SetPoint('TOPRIGHT')
@@ -64,6 +57,7 @@ function Relief:PLAYER_LOGIN()
 
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
+	DurabilityFrame:SetAlpha(0)
 
 	for _, object in pairs({
 		BattlegroundShine,
@@ -103,10 +97,9 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 
 	local color = INVENTORY_ALERT_COLORS[alert]
 	if(color) then
-		MinimapDurability:SetVertexColor(color.r, color.g, color.b)
-		MinimapDurability:Show()
+		Minimap:SetBackdropColor(color.r * 2/3 , color.g * 2/3 , color.b * 2/3 )
 	else
-		MinimapDurability:Hide()
+		Minimap:SetBackdropColor(0, 0, 0)
 	end
 end
 
