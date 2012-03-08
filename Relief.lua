@@ -54,8 +54,6 @@ function Relief:PLAYER_LOGIN()
 		end
 	end)
 
-	LFG_EYE_TEXTURES.unknown = LFG_EYE_TEXTURES.default
-
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
 	MiniMapBattlefieldFrame:SetPoint('TOPRIGHT')
@@ -114,3 +112,7 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 end
 
 function TimeManager_LoadUI() end
+
+LFG_EYE_TEXTURES.unknown = LFG_EYE_TEXTURES.default
+LFG_EYE_TEXTURES.raid = LFG_EYE_TEXTURES.default
+LFG_EYE_TEXTURES.raid.file = [=[Interface\AddOns\Relief\eye]=]
