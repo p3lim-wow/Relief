@@ -42,9 +42,8 @@ function Relief:PLAYER_LOGIN()
 	MiniMapLFGFrame:SetHighlightTexture(nil)
 
 	LFGSearchStatus:SetToplevel(true)
-	LFGSearchStatus:SetBackdrop({bgFile = TEXTURE, edgeFile = TEXTURE, edgeSize = 1})
+	LFGSearchStatus:SetBackdrop({bgFile = TEXTURE})
 	LFGSearchStatus:SetBackdropColor(0, 0, 0, 0.8)
-	LFGSearchStatus:SetBackdropBorderColor(0, 0, 0)
 
 	MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetParent(Minimap)
