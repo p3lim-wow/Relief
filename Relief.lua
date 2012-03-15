@@ -106,5 +106,7 @@ end
 function TimeManager_LoadUI() end
 
 LFG_EYE_TEXTURES.unknown = LFG_EYE_TEXTURES.default
-LFG_EYE_TEXTURES.raid = LFG_EYE_TEXTURES.default
-LFG_EYE_TEXTURES.raid.file = [=[Interface\AddOns\Relief\eye]=]
+LFG_EYE_TEXTURES.raid = {
+	file = [=[Interface\AddOns\Relief\eye]=], frames = 29,
+	delay = 0.1, iconSize = 64, height = 256, width = 512,
+}
