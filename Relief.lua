@@ -166,9 +166,3 @@ function Relief:UPDATE_WORLD_STATES()
 end
 
 function TimeManager_LoadUI() end
-
-LFG_EYE_TEXTURES.unknown.file = nil
-LFG_EYE_TEXTURES.raid = {
-	file = [=[Interface\AddOns\Relief\eye]=], frames = 29,
-	delay = 0.1, iconSize = 64, height = 256, width = 512,
-}
