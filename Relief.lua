@@ -37,18 +37,10 @@ function Relief:PLAYER_LOGIN()
 		end
 	end)
 
-	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:SetParent(Minimap)
-	MiniMapLFGFrame:SetPoint('TOPRIGHT')
-	MiniMapLFGFrame:SetHighlightTexture(nil)
-
-	LFGSearchStatus:SetToplevel(true)
-	LFGSearchStatus:SetBackdrop({bgFile = TEXTURE})
-	LFGSearchStatus:SetBackdropColor(0, 0, 0, 0.8)
-
-	MiniMapBattlefieldFrame:ClearAllPoints()
-	MiniMapBattlefieldFrame:SetParent(Minimap)
-	MiniMapBattlefieldFrame:SetPoint('TOPRIGHT')
+	QueueStatusMinimapButton:ClearAllPoints()
+	QueueStatusMinimapButton:SetParent(Minimap)
+	QueueStatusMinimapButton:SetPoint('TOPRIGHT')
+	QueueStatusMinimapButton:SetHighlightTexture(nil)
 
 	MiniMapMailFrame:ClearAllPoints()
 	MiniMapMailFrame:SetParent(Minimap)
@@ -68,12 +60,11 @@ function Relief:PLAYER_LOGIN()
 		MinimapZoomIn,
 		MinimapZoomOut,
 		MinimapZoneTextButton,
-		MiniMapBattlefieldBorder,
-		MiniMapLFGFrameBorder,
 		MiniMapMailBorder,
 		MiniMapTracking,
 		MiniMapWorldMapButton,
-		MiniMapLFGFrameGroupSize,
+		QueueStatusMinimapButtonBorder,
+		QueueStatusMinimapButtonGroupSize,
 	}) do
 		if(object:GetObjectType() == 'Texture') then
 			object:SetTexture(nil)
