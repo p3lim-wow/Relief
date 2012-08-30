@@ -50,7 +50,7 @@ function Relief:PLAYER_LOGIN()
 	MinimapCluster:EnableMouse(false)
 	DurabilityFrame:SetAlpha(0)
 
-	for _, object in pairs({
+	for __, object in pairs({
 		BattlegroundShine,
 		GameTimeFrame,
 		MinimapBorder,
