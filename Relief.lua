@@ -36,6 +36,10 @@ function Relief:PLAYER_LOGIN()
 		end
 	end)
 
+	Minimap:SetScript('OnMouseWheel', function(self, direction)
+		self:SetZoom(self:GetZoom() + (self:GetZoom() == 0 and direction < 0 and 0 or direction))
+	end)
+
 	QueueStatusMinimapButton:ClearAllPoints()
 	QueueStatusMinimapButton:SetParent(Minimap)
 	QueueStatusMinimapButton:SetPoint('TOPRIGHT')
