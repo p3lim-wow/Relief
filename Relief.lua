@@ -59,7 +59,6 @@ function Relief:PLAYER_LOGIN()
 	DurabilityFrame:SetAlpha(0)
 
 	for _, name in next, {
-		'BattlegroundShine',
 		'GameTimeFrame',
 		'MinimapBorder',
 		'MinimapBorderTop',
