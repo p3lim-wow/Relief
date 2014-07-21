@@ -10,6 +10,10 @@
 --]]
 
 local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
+local BACKDROP = {
+	bgFile = TEXTURE,
+	insets = {top = -1, bottom = -1, left = -1, right = -1}
+}
 
 local Relief = CreateFrame('Frame', nil, Minimap)
 Relief:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
@@ -19,7 +23,7 @@ function Relief:PLAYER_LOGIN()
 	Minimap:ClearAllPoints()
 	Minimap:SetParent(UIParent)
 	Minimap:SetPoint('TOPRIGHT', -20, -20)
-	Minimap:SetBackdrop({bgFile = TEXTURE, insets = {top = -1, bottom = -1, left = -1, right = -1}})
+	Minimap:SetBackdrop(BACKDROP)
 	Minimap:SetBackdropColor(0, 0, 0)
 	Minimap:SetMaskTexture(TEXTURE)
 	Minimap:SetArchBlobRingAlpha(0)
