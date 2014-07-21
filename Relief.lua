@@ -78,6 +78,7 @@ function Relief:PLAYER_LOGIN()
 	end
 
 	self:RegisterEvent('UPDATE_INVENTORY_DURABILITY')
+	self:RegisterEvent('UPDATE_PENDING_MAIL')
 end
 
 function Relief:UPDATE_INVENTORY_DURABILITY()
@@ -94,6 +95,15 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 		Minimap:SetBackdropColor(color.r * 2/3 , color.g * 2/3 , color.b * 2/3 )
 	else
 		Minimap:SetBackdropColor(0, 0, 0)
+	end
+end
+
+function Relief:UPDATE_PENDING_MAIL()
+	for index = 1, GetNumTrackingTypes() do
+		local name, texture, active = GetTrackingInfo(index)
+		if(name == MINIMAP_TRACKING_MAILBOX) then
+			return SetTracking(index, HasNewMail() and not active)
+		end
 	end
 end
 
