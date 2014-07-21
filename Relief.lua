@@ -54,21 +54,22 @@ function Relief:PLAYER_LOGIN()
 	MinimapCluster:EnableMouse(false)
 	DurabilityFrame:SetAlpha(0)
 
-	for _, object in pairs({
-		BattlegroundShine,
-		GameTimeFrame,
-		MinimapBorder,
-		MinimapBorderTop,
-		MinimapNorthTag,
-		MinimapZoomIn,
-		MinimapZoomOut,
-		MinimapZoneTextButton,
-		MiniMapMailBorder,
-		MiniMapTracking,
-		MiniMapWorldMapButton,
-		QueueStatusMinimapButtonBorder,
-		QueueStatusMinimapButtonGroupSize,
+	for _, name in pairs({
+		'BattlegroundShine',
+		'GameTimeFrame',
+		'MinimapBorder',
+		'MinimapBorderTop',
+		'MinimapNorthTag',
+		'MinimapZoomIn',
+		'MinimapZoomOut',
+		'MinimapZoneTextButton',
+		'MiniMapMailBorder',
+		'MiniMapTracking',
+		'MiniMapWorldMapButton',
+		'QueueStatusMinimapButtonBorder',
+		'QueueStatusMinimapButtonGroupSize',
 	}) do
+		local object = _G[name]
 		if(object:GetObjectType() == 'Texture') then
 			object:SetTexture(nil)
 		else
