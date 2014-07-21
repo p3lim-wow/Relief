@@ -54,7 +54,7 @@ function Relief:PLAYER_LOGIN()
 	MinimapCluster:EnableMouse(false)
 	DurabilityFrame:SetAlpha(0)
 
-	for _, name in pairs({
+	for _, name in next, {
 		'BattlegroundShine',
 		'GameTimeFrame',
 		'MinimapBorder',
@@ -68,7 +68,7 @@ function Relief:PLAYER_LOGIN()
 		'MiniMapWorldMapButton',
 		'QueueStatusMinimapButtonBorder',
 		'QueueStatusMinimapButtonGroupSize',
-	}) do
+	} do
 		local object = _G[name]
 		if(object:GetObjectType() == 'Texture') then
 			object:SetTexture(nil)
@@ -84,7 +84,7 @@ end
 
 function Relief:UPDATE_INVENTORY_DURABILITY()
 	local alert = 0
-	for index in pairs(INVENTORY_ALERT_STATUS_SLOTS) do
+	for index in next, INVENTORY_ALERT_STATUS_SLOTS do
 		local status = GetInventoryAlertStatus(index)
 		if(status > alert) then
 			alert = status
