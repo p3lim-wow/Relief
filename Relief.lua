@@ -81,6 +81,8 @@ function Relief:PLAYER_LOGIN()
 		end
 	end
 
+	SetCVar('rotateMinimap', 0)
+
 	self:UPDATE_INVENTORY_DURABILITY()
 	self:RegisterEvent('UPDATE_INVENTORY_DURABILITY')
 	self:RegisterEvent('UPDATE_PENDING_MAIL')
