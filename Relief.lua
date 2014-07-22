@@ -81,6 +81,7 @@ function Relief:PLAYER_LOGIN()
 		end
 	end
 
+	self:UPDATE_INVENTORY_DURABILITY()
 	self:RegisterEvent('UPDATE_INVENTORY_DURABILITY')
 	self:RegisterEvent('UPDATE_PENDING_MAIL')
 end
