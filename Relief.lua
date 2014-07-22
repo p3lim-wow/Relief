@@ -100,11 +100,18 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 	else
 		Minimap:SetBackdropColor(0, 0, 0)
 	end
+
+	for index = 1, GetNumTrackingTypes() do
+		local name, _, active = GetTrackingInfo(index)
+		if(name == MINIMAP_TRACKING_REPAIR) then
+			return SetTracking(index, alert > 0)
+		end
+	end
 end
 
 function Relief:UPDATE_PENDING_MAIL()
 	for index = 1, GetNumTrackingTypes() do
-		local name, texture, active = GetTrackingInfo(index)
+		local name, _, active = GetTrackingInfo(index)
 		if(name == MINIMAP_TRACKING_MAILBOX) then
 			return SetTracking(index, HasNewMail() and not active)
 		end
