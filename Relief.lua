@@ -1,14 +1,3 @@
---[[
-
- Copyright (c) 2009-2014, Adrian L Lange
- All rights reserved.
-
- You're allowed to use this addon, free of monetary charge,
- but you are not allowed to modify, alter, or redistribute
- this addon without express, written permission of the author.
-
---]]
-
 local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
 local BACKDROP = {
 	bgFile = TEXTURE,
