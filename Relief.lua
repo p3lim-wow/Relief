@@ -1,5 +1,3 @@
-local WoD = select(4, GetBuildInfo()) >= 6e4
-
 local TEXTURE = [[Interface\ChatFrame\ChatFrameBackground]]
 local BACKDROP = {
 	bgFile = TEXTURE,
@@ -35,12 +33,10 @@ function Relief:PLAYER_LOGIN()
 		self:SetZoom(self:GetZoom() + (self:GetZoom() == 0 and direction < 0 and 0 or direction))
 	end)
 
-	if(WoD) then
-		GarrisonLandingPageMinimapButton:ClearAllPoints()
-		GarrisonLandingPageMinimapButton:SetParent(Minimap)
-		GarrisonLandingPageMinimapButton:SetPoint('BOTTOMLEFT')
-		GarrisonLandingPageMinimapButton:SetSize(32, 32)
-	end
+	GarrisonLandingPageMinimapButton:ClearAllPoints()
+	GarrisonLandingPageMinimapButton:SetParent(Minimap)
+	GarrisonLandingPageMinimapButton:SetPoint('BOTTOMLEFT')
+	GarrisonLandingPageMinimapButton:SetSize(32, 32)
 
 	QueueStatusMinimapButton:ClearAllPoints()
 	QueueStatusMinimapButton:SetParent(Minimap)
