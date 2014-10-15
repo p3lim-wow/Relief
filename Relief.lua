@@ -1,6 +1,6 @@
 local WoD = select(4, GetBuildInfo()) >= 6e4
 
-local TEXTURE = [=[Interface\ChatFrame\ChatFrameBackground]=]
+local TEXTURE = [[Interface\ChatFrame\ChatFrameBackground]]
 local BACKDROP = {
 	bgFile = TEXTURE,
 	insets = {top = -1, bottom = -1, left = -1, right = -1}
@@ -50,7 +50,7 @@ function Relief:PLAYER_LOGIN()
 	MiniMapMailFrame:ClearAllPoints()
 	MiniMapMailFrame:SetParent(Minimap)
 	MiniMapMailFrame:SetPoint('TOPLEFT')
-	MiniMapMailIcon:SetTexture([=[Interface\Minimap\Tracking\Mailbox]=])
+	MiniMapMailIcon:SetTexture([[Interface\Minimap\Tracking\Mailbox]])
 
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
