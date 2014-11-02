@@ -144,6 +144,10 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 end
 
 function Relief:UPDATE_PENDING_MAIL()
+	if(IsTrialAccount()) then
+		return MiniMapMailFrame:Hide()
+	end
+
 	for index = 1, GetNumTrackingTypes() do
 		local name, _, active = GetTrackingInfo(index)
 		if(name == MINIMAP_TRACKING_MAILBOX) then
