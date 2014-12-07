@@ -101,7 +101,7 @@ function Relief:PLAYER_LOGIN()
 		end)
 
 		if(not string.find(data.icon, 'red')) then
-			Button:Hide()
+			Button:SetAlpha(0)
 		end
 
 		local Icon = Button:CreateTexture(nil, 'OVERLAY')
@@ -111,9 +111,9 @@ function Relief:PLAYER_LOGIN()
 
 		LDB.RegisterCallback(Button, 'LibDataBroker_AttributeChanged_BugSack', function()
 			if(string.find(data.icon, 'red')) then
-				Button:Show()
+				Button:SetAlpha(1)
 			else
-				Button:Hide()
+				Button:SetAlpha(0)
 			end
 		end)
 	end
