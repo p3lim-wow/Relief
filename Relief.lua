@@ -48,6 +48,7 @@ function Relief:PLAYER_LOGIN()
 	MiniMapMailFrame:SetPoint('TOPLEFT')
 	MiniMapMailIcon:SetTexture([[Interface\Minimap\Tracking\Mailbox]])
 
+	MiniMapInstanceDifficulty:Hide()
 	MiniMapInstanceDifficulty:UnregisterAllEvents()
 	MinimapCluster:EnableMouse(false)
 	DurabilityFrame:SetAlpha(0)
