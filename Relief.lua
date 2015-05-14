@@ -128,4 +128,8 @@ function Relief:MAIL_CLOSED()
 	end
 end
 
+function GetMinimapShape()
+	return 'SQUARE'
+end
+
 function TimeManager_LoadUI() end
