@@ -144,7 +144,7 @@ function Relief:UPDATE_INVENTORY_DURABILITY()
 end
 
 function Relief:UPDATE_PENDING_MAIL()
-	if(IsTrialAccount()) then
+	if(GetRestrictedAccountData() > 0) then
 		return MiniMapMailFrame:Hide()
 	end
 
