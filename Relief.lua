@@ -115,8 +115,16 @@ function Relief:UPDATE_PENDING_MAIL()
 	for index = 1, GetNumTrackingTypes() do
 		local name, _, active = GetTrackingInfo(index)
 		if(name == MINIMAP_TRACKING_MAILBOX) then
-			return SetTracking(index, HasNewMail() and not active)
+			return SetTracking(index, MiniMapMailFrame:IsShown() and not active)
 		end
+	end
+end
+
+function Relief:MAIL_CLOSED()
+	local _, numInboxItems = GetInboxNumItems()
+	if(HasNewMail() and numInboxItems == 0) then
+		MiniMapMailFrame:Hide()
+		self:UPDATE_PENDING_MAIL()
 	end
 end
 
